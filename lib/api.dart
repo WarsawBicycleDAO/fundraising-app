@@ -1,4 +1,14 @@
+import 'package:http/http.dart';
+import 'package:web3dart/web3dart.dart';
+
 class Api {
+  var _contractAddress =
+      EthereumAddress.fromHex("0x480Fa0aBe7d016701CbbAAF33a4D802BD6034c7e");
+
+  var _client = Web3Client(
+      "https://avalanche-fuji.infura.io/v3/64f4218dbd3540dda045a88ec375c559",
+      Client());
+
   List<Proposal> _proposals = [
     Proposal(
         "proposal-1",
