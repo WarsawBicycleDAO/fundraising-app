@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft_fundrasing/nft_fundraising/presentation/pages/auctionpage.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -9,14 +10,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Home",),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text("home Page"),
-      ),
-    );
+    return AuctionPage();
   }
 }

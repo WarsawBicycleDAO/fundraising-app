@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'nft_fundraising/presentation/homepage.dart';
+import 'nft_fundraising/presentation/home_page/homepage.dart';
 
 void main() {
   runApp(const MyApp());
