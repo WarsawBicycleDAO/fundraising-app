@@ -1,5 +1,5 @@
 class Api {
-  List<Proposal> proposals = [
+  List<Proposal> _proposals = [
     Proposal(
         "proposal-1",
         "Biking night",
@@ -14,29 +14,29 @@ class Api {
         "We believe everyone should skate. Skating is healthy and funny. Please skate with us."),
   ];
 
-  NftBidding currentNftBidding = NftBidding(
+  NftBidding _currentNftBidding = NftBidding(
       "https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/in/wp-content/uploads/2022/03/monkey-g412399084_1280.jpg",
       13);
 
   List<Proposal> getProposals() {
-    return proposals;
+    return _proposals;
   }
 
   void addProposal(Proposal proposal) {
-    proposals.add(proposal);
+    _proposals.add(proposal);
   }
 
   NftBidding getCurrentNftBidding() {
-    return currentNftBidding;
+    return _currentNftBidding;
   }
 
   void makeBid(int bid) {
-    currentNftBidding.bid = bid;
+    _currentNftBidding.bid = bid;
   }
 
   void voteUp(String proposalId) {
     var proposal =
-        proposals.where((proposal) => proposal.id == proposalId).firstOrNull;
+        _proposals.where((proposal) => proposal.id == proposalId).firstOrNull;
     proposal?.votes++;
   }
 }
