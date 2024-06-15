@@ -26,7 +26,6 @@ class _JsonListViewState extends State<JsonListView> {
         } else if (!snapshot.hasData) {
           return Center(child: Text('No data available'));
         } else {
-          debugPrint("${snapshot.data.runtimeType}");
           final listTiles = parseJsonToListTiles(snapshot.data!, context);
           return Column(
             children: [
@@ -44,8 +43,6 @@ class _JsonListViewState extends State<JsonListView> {
 
   List<Card> parseJsonToListTiles(String jsonData, BuildContext context) {
     final data = json.decode(jsonData)['data'] as List;
-    debugPrint("==================${data[0]}");
-
     return MyApp.api.getProposals().map((item) {
       return  Card(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -95,16 +92,51 @@ class _JsonListViewState extends State<JsonListView> {
           onTap: () => showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text(item.title),
-              content: Text(item.description),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              title: Container(
+                padding: EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.0),
+                    topRight: Radius.circular(15.0),
+                  ),
+                ),
+                child: Text(
+                  item.title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+              content: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Text(
+                  item.description,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text('Close'),
+                  child: Text(
+                    'Close',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 18.0,
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
+
         ),
       );
 

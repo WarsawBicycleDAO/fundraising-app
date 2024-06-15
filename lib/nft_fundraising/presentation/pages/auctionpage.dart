@@ -27,7 +27,6 @@ class _AuctionPageState extends State<AuctionPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text("Home",),
@@ -36,7 +35,7 @@ class _AuctionPageState extends State<AuctionPage> {
       ),
       body: Center(
         child: Container(
-          width: width * 0.7,
+          width: width>750?width * 0.7:width * 0.9,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start, // Center content vertically

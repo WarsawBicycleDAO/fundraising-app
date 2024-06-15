@@ -5,7 +5,6 @@ import 'package:nft_fundrasing/main.dart';
 
 List<ListTile> parseJsonToListTiles(String jsonData, BuildContext context) {
   final data = json.decode(jsonData)['data'] as List;
-  debugPrint("==================${data[0]}");
 
   return MyApp.api.getProposals().map((item) {
     return  ListTile(
