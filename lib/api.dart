@@ -17,6 +17,7 @@ class Api {
   NftBidding _currentNftBidding = NftBidding(
       "https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/in/wp-content/uploads/2022/03/monkey-g412399084_1280.jpg",
       "the crazy monkey",
+      DateTime(2024, 6, 27),
       13);
 
   List<Proposal> getProposals() {
@@ -55,7 +56,8 @@ class Proposal {
 class NftBidding {
   String url;
   String name;
+  DateTime endTime;
   int bid;
 
-  NftBidding(this.url, this.name, this.bid);
+  NftBidding(this.url, this.name, this.endTime, this.bid);
 }
