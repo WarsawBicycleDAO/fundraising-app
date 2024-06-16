@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:nft_fundrasing/main.dart';
 
 import '../../../costant/constants.dart';
 import '../widgets/auction_boudy.dart';
 import '../widgets/proposals.dart';
+
 class AuctionPage extends StatefulWidget {
   const AuctionPage({super.key});
 
@@ -29,17 +29,17 @@ class _AuctionPageState extends State<AuctionPage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home",),
-
         centerTitle: true,
       ),
       body: Center(
         child: Container(
-          width: width>750?width * 0.7:width * 0.9,
+          width: width > 750 ? width * 0.7 : width * 0.9,
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start, // Center content vertically
-              crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
+              mainAxisAlignment: MainAxisAlignment.start,
+              // Center content vertically
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // Center content horizontally
               children: [
                 AuctionBody(),
                 JsonListView(
@@ -50,12 +50,10 @@ class _AuctionPageState extends State<AuctionPage> {
           ),
         ),
       ),
-
-
     );
   }
-  Future<String> loadJsonData() async {
 
+  Future<String> loadJsonData() async {
     String jsonDataString = jsonEncode(dataFromBlockChain);
     return jsonDataString;
   }
