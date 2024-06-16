@@ -51,7 +51,7 @@ class Api {
   NftBidding _currentNftBidding = NftBidding(
       "https://th.bing.com/th/id/R.5d58e453b70a83e2c1437cc79c071152?rik=DnFRw4oUBjLZ8g&riu=http%3a%2f%2fwww.playtoearn.online%2fwp-content%2fuploads%2f2021%2f10%2fBored-Ape-Yacht-Club-NFT-avatar.png&ehk=J4Pe0jNr7sURLybbVvFnHISjRPvAw60Q3fYzG7xBxag%3d&risl=&pid=ImgRaw&r=0",
       "the crazy monkey",
-      DateTime(2024, 6, 27),
+      DateTime(2024, 6, 16),
       13);
 
   List<Proposal> getProposals() {
