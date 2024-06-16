@@ -14,6 +14,8 @@ class AuctionBody extends StatefulWidget {
 
 class _AuctionBodyState extends State<AuctionBody> {
   TextEditingController _controller = TextEditingController();
+ String bidingError = "";
+ bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +70,7 @@ class _AuctionBodyState extends State<AuctionBody> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              Text(bidingError, style: TextStyle(color: Colors.red),),
                             ],
                           ),
                           Column(
@@ -127,8 +130,32 @@ class _AuctionBodyState extends State<AuctionBody> {
                           ),
                           SizedBox(width: 20),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async{
                               // Handle bid action
+                              if(int.parse(_controller.text) < MyApp.api.getCurrentNftBidding().bid){
+                                setState(() {
+                                  _loading = true;
+
+                                });
+                                await Future.delayed(Duration(seconds: 1));
+                                setState(() {
+
+                                  bidingError = "Sorry, the bidding is \nless than the \ncurrent bid";
+                                _loading = false;
+                                });
+                              } else{
+                                setState(() {
+                                  _loading = true;
+
+                                });
+                                await Future.delayed(Duration(seconds: 1));
+                                setState(() {
+                                  MyApp.api.makeBid(int.parse(_controller.text));
+                                  bidingError = "";
+                                  _loading = false;
+                                });
+
+                              }
                             },
                             child: Container(
                               height: 60,
@@ -146,7 +173,7 @@ class _AuctionBodyState extends State<AuctionBody> {
                                 ],
                               ),
                               child: Center(
-                                child: Text(
+                                child: _loading?CircularProgressIndicator():Text(
                                   "Apply Bid",
                                   style: TextStyle(
                                     color: Colors.white,
@@ -269,8 +296,32 @@ class _AuctionBodyState extends State<AuctionBody> {
                         ),
                         SizedBox(width: 20),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async{
                             // Handle bid action
+                            if(int.parse(_controller.text) < MyApp.api.getCurrentNftBidding().bid){
+                              setState(() {
+                                _loading = true;
+
+                              });
+                              await Future.delayed(Duration(seconds: 1));
+                              setState(() {
+
+                                bidingError = "Sorry, the bidding is \nless than the \ncurrent bid";
+                                _loading = false;
+                              });
+                            } else{
+                              setState(() {
+                                _loading = true;
+
+                              });
+                              await Future.delayed(Duration(seconds: 1));
+                              setState(() {
+                                MyApp.api.makeBid(int.parse(_controller.text));
+                                bidingError = "";
+                                _loading = false;
+                              });
+
+                            }
                           },
                           child: Container(
                             height: 60,
@@ -307,17 +358,11 @@ class _AuctionBodyState extends State<AuctionBody> {
             ],
           ),
         ),
-        JsonListView(
-          jsonDataFuture: loadJsonData(),
-        ),
+
       ],
 
 
     );
   }
-  Future<String> loadJsonData() async {
 
-    String jsonDataString = jsonEncode(dataFromBlockChain);
-    return jsonDataString;
-  }
 }

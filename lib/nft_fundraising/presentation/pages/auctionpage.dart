@@ -14,16 +14,16 @@ class AuctionPage extends StatefulWidget {
 }
 
 class _AuctionPageState extends State<AuctionPage> {
-  Future<String> loadJsonData() async {
-    // Simulating network delay or loading time
-    // await Future.delayed(Duration(seconds: 1));
-
-    // Convert dataFromBlockChain to a JSON string
-    String jsonDataString = jsonEncode(dataFromBlockChain);
-
-    // Return the JSON string
-    return jsonDataString;
-  }
+  // Future<String> loadJsonData() async {
+  //   // Simulating network delay or loading time
+  //   // await Future.delayed(Duration(seconds: 1));
+  //
+  //   // Convert dataFromBlockChain to a JSON string
+  //   String jsonDataString = jsonEncode(dataFromBlockChain);
+  //
+  //   // Return the JSON string
+  //   return jsonDataString;
+  // }
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -42,6 +42,9 @@ class _AuctionPageState extends State<AuctionPage> {
               crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
               children: [
                 AuctionBody(),
+                JsonListView(
+                  jsonDataFuture: loadJsonData(),
+                ),
               ],
             ),
           ),
@@ -50,5 +53,10 @@ class _AuctionPageState extends State<AuctionPage> {
 
 
     );
+  }
+  Future<String> loadJsonData() async {
+
+    String jsonDataString = jsonEncode(dataFromBlockChain);
+    return jsonDataString;
   }
 }
